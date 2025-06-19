@@ -1,0 +1,37 @@
+.contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0e6ff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(174, 132, 255, 0.1);
+  font-size: 16px;
+}
+
+.contact span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.contact span::before {
+  content: "👤 ";
+  font-size: 18px;
+  margin-right: 4px;
+  display: inline;
+}
+
+button {
+  background-color: #e1d4ff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #cebfff;
+}
