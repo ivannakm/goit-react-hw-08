@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { Navigate } from "react-router-dom";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
-
+import css from "./RegistrationPage.module.css";
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -17,8 +17,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className={css.box}>
+      <h2 className={css.title}>Register</h2>
       <RegistrationForm onSubmit={handleRegister} />
     </div>
   );

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/auth/operations";
 import { Navigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import css from "./LoginPage.module.css";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div lassName={css.box}>
+      <h2 className={css.title}>Login</h2>
       <LoginForm onSubmit={handleLogin} />
     </div>
   );

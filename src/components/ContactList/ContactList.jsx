@@ -14,6 +14,8 @@ const ContactList = () => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
+  console.log("Visible contacts:", contacts);
+
   // const visibleContacts = contacts.filter((contact) => {
   //   return contact.name.toLowerCase().includes(filter.toLowerCase());
   // });

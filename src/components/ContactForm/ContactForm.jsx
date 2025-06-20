@@ -1,5 +1,4 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useId } from "react";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
@@ -11,8 +10,8 @@ const FeedbackSchema = Yup.object().shape({
     .max(50, "Too Long!")
     .required("Required"),
   number: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
+    .min(5, "Too Short!")
+    .max(20, "Too Long!")
     .required("Required"),
 });
 
@@ -23,15 +22,10 @@ const initialValues = {
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const nameId = useId();
-  const numberId = useId();
 
-  const handleSubmit = (values, actions) => {
-    // const newContact = {
-    //   ...values,
-    //   id: crypto.randomUUID(),
-    // };
-    dispatch(addContact(values));
+  const handleSubmit = (contact, actions) => {
+    console.log("Submitting contact to API:", contact);
+    dispatch(addContact(contact));
     actions.resetForm();
   };
 
@@ -43,19 +37,21 @@ const ContactForm = () => {
     >
       <Form className={css.form}>
         <div className={css.fieldGroup}>
-          <label htmlFor={nameId} className={css.formLabel}>
+          <label htmlFor="name" className={css.formLabel}>
             Name
-            <Field id={nameId} name="name" />
-            <ErrorMessage name="name" component="div" className={css.error} />
           </label>
+          <Field id="name" name="name" />
+          <ErrorMessage name="name" component="div" className={css.error} />
         </div>
+
         <div className={css.fieldGroup}>
-          <label htmlFor={numberId} className={css.formLabel}>
+          <label htmlFor="number" className={css.formLabel}>
             Number
-            <Field id={numberId} name="number" />
-            <ErrorMessage name="number" component="div" className={css.error} />
           </label>
+          <Field id="number" name="number" />
+          <ErrorMessage name="number" component="div" className={css.error} />
         </div>
+
         <button type="submit">Add contact</button>
       </Form>
     </Formik>

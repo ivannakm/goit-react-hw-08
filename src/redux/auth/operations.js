@@ -1,9 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: "https://connections-api.goit.global",
 });
+
+// k67bet@gmail.com
+// k67bettW??
 
 //clear
 
@@ -12,7 +15,7 @@ const setAuthHeader = (token) => {
 };
 
 const clearAuthHeader = () => {
-  delete instance.defaults.headers.Authorization;
+  instance.defaults.headers.common.Authorization = "";
 };
 
 //register
@@ -23,6 +26,7 @@ export const register = createAsyncThunk(
     try {
       const res = await instance.post("/users/signup", credentials);
       setAuthHeader(res.data.token);
+      localStorage.setItem("token", res.data.token);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -38,6 +42,7 @@ export const login = createAsyncThunk(
     try {
       const res = await instance.post("/users/login", credentials);
       setAuthHeader(res.data.token);
+      localStorage.setItem("token", res.data.token);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -51,6 +56,7 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     await instance.post("/users/logout");
     clearAuthHeader();
+    localStorage.removeItem("token");
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -62,7 +68,7 @@ export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const token = state.auth.token;
+    const token = state.auth.token || localStorage.getItem("token");
 
     if (!token) {
       return thunkAPI.rejectWithValue("Unable to fetch user. No token");

@@ -16,35 +16,41 @@ const RegistrationForm = ({ onSubmit }) => {
   });
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      <Form className={css.form}>
-        <label className={css.label}>
-          Name
-          <Field type="text" name="name" className={css.input} />
-          <ErrorMessage name="name" component="div" className={css.error} />
-        </label>
+    <div className={css.box}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        <Form className={css.form}>
+          <label className={css.label}>
+            Name
+            <Field type="text" name="name" className={css.input} />
+            <ErrorMessage name="name" component="div" className={css.error} />
+          </label>
 
-        <label className={css.label}>
-          Email
-          <Field type="email" name="email" className={css.input} />
-          <ErrorMessage name="email" component="div" className={css.error} />
-        </label>
+          <label className={css.label}>
+            Email
+            <Field type="email" name="email" className={css.input} />
+            <ErrorMessage name="email" component="div" className={css.error} />
+          </label>
 
-        <label className={css.label}>
-          Password
-          <Field type="password" name="password" className={css.input} />
-          <ErrorMessage name="password" component="div" className={css.error} />
-        </label>
+          <label className={css.label}>
+            Password
+            <Field type="password" name="password" className={css.input} />
+            <ErrorMessage
+              name="password"
+              component="div"
+              className={css.error}
+            />
+          </label>
 
-        <button type="submit" className={css.button}>
-          Register
-        </button>
-      </Form>
-    </Formik>
+          <button type="submit" className={css.button}>
+            Register
+          </button>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 
